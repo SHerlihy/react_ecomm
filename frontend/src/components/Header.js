@@ -2,11 +2,11 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import LinkContainer from "react-router-bootstrap/lib/LinkContainer";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { LinkContainer } from "react-router-bootstrap";
+import { Navbar } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import SearchBox from "./SearchBox";
 import { logout } from "../actions/userActions";
 

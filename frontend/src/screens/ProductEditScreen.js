@@ -1,8 +1,8 @@
-import axios from "axios";
+import { post } from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -66,7 +66,7 @@ const ProductEditScreen = ({ match, history }) => {
         },
       };
 
-      const { data } = await axios.post("/api/upload", formData, config);
+      const { data } = await post("/api/upload", formData, config);
 
       setImage(data);
       setUploading(false);

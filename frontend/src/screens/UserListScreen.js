@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import LinkContainer from "react-router-bootstrap/lib/LinkContainer";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+import { LinkContainer } from "react-router-bootstrap";
+import { Table } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";

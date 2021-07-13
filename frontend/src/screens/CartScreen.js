@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import ListGroup from "react-bootstrap/ListGroup";
-import Image from "react-bootstrap/Image";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
+import { Image } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 
