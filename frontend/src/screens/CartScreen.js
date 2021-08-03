@@ -18,6 +18,7 @@ const CartScreen = ({ match, location, history }) => {
 
   const dispatch = useDispatch();
 
+  const loggedIn = useSelector((state) => state.userInfo);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -32,7 +33,12 @@ const CartScreen = ({ match, location, history }) => {
   };
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
+    // if (loggedIn) {
+    //   history.push("/login?redirect=shipping");
+    // } else {
+    //   history.push("/placeorder");
+    // }
+    history.push("/shipping");
   };
 
   return (

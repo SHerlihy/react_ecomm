@@ -66,7 +66,21 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group controlId="password">
+        <Button type="submit" variant="primary">
+          Register
+        </Button>
+      </Form>
+
+      <Row className="py-3">
+        <Col>
+          Have an Account?{" "}
+          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+            Login
+          </Link>
+        </Col>
+      </Row>
+
+      {/* <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -84,21 +98,7 @@ const RegisterScreen = ({ location, history }) => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
-        </Form.Group>
-
-        <Button type="submit" variant="primary">
-          Register
-        </Button>
-      </Form>
-
-      <Row className="py-3">
-        <Col>
-          Have an Account?{" "}
-          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Login
-          </Link>
-        </Col>
-      </Row>
+        </Form.Group> */}
     </FormContainer>
   );
 };

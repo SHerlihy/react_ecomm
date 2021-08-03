@@ -27,6 +27,7 @@
     "multer": "^1.4.2"
   },
   "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.4"
   }
