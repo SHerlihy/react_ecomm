@@ -86,16 +86,4 @@ describe("renders correct conditional data with empty cart", () => {
     );
     expect(proceedButtonComponent.props()["disabled"]).toBe(false);
   });
-
-  // test("should render 0 quantity and 0 price", () => {
-  //   const totalQuantity = findByTestAttr(wrapper, "total-quantity");
-  //   expect(totalQuantity.text()).toContain("(0) items");
-  //   const subtotal = findByTestAttr(wrapper, "subtotal");
-  //   expect(subtotal.text()).toContain("$0.00");
-  //   const proceedButtonComponent = findByTestAttr(
-  //     wrapper,
-  //     "proceed-button-component"
-  //   );
-  //   expect(proceedButtonComponent.props()["disabled"]).toBe(true);
-  // });
 });

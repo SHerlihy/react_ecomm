@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
-import { Image } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import CheckoutSteps from "../components/CheckoutSteps";
-import { createOrder } from "../actions/orderActions";
-import { ORDER_CREATE_RESET } from "../constants/orderConstants";
-import { USER_DETAILS_RESET } from "../constants/userConstants";
+import Message from "../../components/Message";
+import CheckoutSteps from "../../components/CheckoutSteps";
+import { createOrder } from "../../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
+import { USER_DETAILS_RESET } from "../../constants/userConstants";
+import OrderProductDetails from "../../components/OrderProductDetails";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -73,7 +72,7 @@ const PlaceOrderScreen = ({ history }) => {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
-              <p>
+              <p data-test="shipping-address">
                 <strong>Address:</strong>
                 {cart.shippingAddress.address}, {cart.shippingAddress.city}{" "}
                 {cart.shippingAddress.postalCode},{" "}
@@ -81,7 +80,7 @@ const PlaceOrderScreen = ({ history }) => {
               </p>
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            <ListGroup.Item data-test="payment-method">
               <h2>Payment Method</h2>
               <strong>Method: </strong>
               {cart.paymentMethod}
@@ -90,32 +89,11 @@ const PlaceOrderScreen = ({ history }) => {
             <ListGroup.Item>
               <h2>Order Items</h2>
               {cart.cartItems.length === 0 ? (
-                <Message>Your cart is empty</Message>
+                <Message data-test="empty-cart-message">
+                  Your cart is empty
+                </Message>
               ) : (
-                <ListGroup variant="flush">
-                  {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
-                      <Row>
-                        <Col md={1}>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fluid
-                            rounded
-                          />
-                        </Col>
-                        <Col>
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
+                <OrderProductDetails cart={cart} />
               )}
             </ListGroup.Item>
           </ListGroup>
@@ -129,25 +107,25 @@ const PlaceOrderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col data-test="total-items">${cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col data-test="total-shipping">${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col data-test="total-tax">${cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col data-test="total-total">${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -155,9 +133,10 @@ const PlaceOrderScreen = ({ history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
+                  data-test="button-place-order"
                   type="button"
                   className="btn-block"
-                  disabled={cart.cartItems === 0}
+                  disabled={cart.cartItems.length === 0}
                   onClick={placeOrderHandler}
                 >
                   Place Order
