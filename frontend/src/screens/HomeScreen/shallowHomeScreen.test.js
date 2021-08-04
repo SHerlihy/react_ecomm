@@ -1,7 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findByTestAttr, storeFactory } from "../../testUtils";
-import { Provider } from "react-redux";
+import { findByTestAttr } from "../../testUtils";
 import HomeScreen from "./index.js";
 import * as redux from "react-redux";
 
@@ -12,10 +11,6 @@ const mockDispatchFn = jest.fn();
 const setup = (match) => {
   return shallow(<HomeScreen match={match} />);
 };
-
-// test("should dispatch on render", () => {
-//   expect(mockDispatchFn).toHaveBeenCalled();
-// });
 
 describe("renders loading conditional content, no match.params ", () => {
   let wrapper;

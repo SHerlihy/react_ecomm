@@ -8,8 +8,8 @@ import { Image } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Card } from "react-bootstrap";
-import Message from "../components/Message";
-import { addToCart, removeFromCart } from "../actions/cartActions";
+import Message from "../../components/Message";
+import { addToCart, removeFromCart } from "../../actions/cartActions";
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -18,7 +18,7 @@ const CartScreen = ({ match, location, history }) => {
 
   const dispatch = useDispatch();
 
-  const loggedIn = useSelector((state) => state.userInfo);
+  // const loggedIn = useSelector((state) => state.userInfo);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -45,14 +45,18 @@ const CartScreen = ({ match, location, history }) => {
     <Row>
       <Col md={8}>
         <h1>Shopping Cart</h1>
-        {cartItems.length === 0 ? (
-          <Message>
+        {cartItems.length || (
+          <Message data-test="empty-message-component">
             Your cart is empty <Link to="/">Go Back</Link>
           </Message>
-        ) : (
+        )}
+        {cartItems.length && (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
+              <ListGroup.Item
+                data-test="cart-item-component"
+                key={item.product}
+              >
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
@@ -96,8 +100,8 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={4}>
         <Card>
           <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h2>
+            <ListGroup.Item data-test="subtotal">
+              <h2 data-test="total-quantity">
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
               </h2>
@@ -108,6 +112,7 @@ const CartScreen = ({ match, location, history }) => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
+                data-test="proceed-button-component"
                 type="button"
                 className="btn-block"
                 disabled={cartItems.length === 0}
